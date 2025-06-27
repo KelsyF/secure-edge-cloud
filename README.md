@@ -64,6 +64,6 @@ This project has been built to mirror real-world IoT communication patterns and 
 
 Kelsy Frank
 
-M.S. in Computer Science | Learniung Tech Enthusiast
+M.S. in Computer Science | Learning Tech Enthusiast
 
 [LinkedIn](https://www.linkedin.com/in/kelsy-frank-36a20732a/)
