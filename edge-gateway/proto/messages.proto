@@ -1,0 +1,13 @@
+
+syntax = "proto3";
+
+package messages;
+
+option go_package = "github.com/KelsyF/secure-edge-cloud/edge-gateway/generated/messages";
+
+// DeviceEvent is what's sent from the devices to the Edge Gateway
+message DeviceEvent {
+    string device_id =1;
+    string type = 2;
+    string payload = 3;
+}

@@ -1,35 +1,34 @@
-
 package main
 
-import(
-	"encoding/json"
-	"io/ioutil"
+import (
+	"io"
+	"log"
 	"net/http"
+
+	"github.com/KelsyF/secure-edge-cloud/edge-gateway/generated/messages"
+	"google.golang.org/protobuf/proto"
 )
 
-type Event struct {
-	DeviceID string `json:"device_id"`
-	Type     string `json:"type"`
-	Payload  string `json: "payload"`
-}
-
-func (s *Server) handleEvent(w http.RepsonseWriter, r *http.Request) {
-	body, err := ioutil.ReadAll(r.Body)
+func (s *Server) handleEvent(w http.ResponseWriter, r *http.Request) {
+	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		http.Error(w, "Bad Request", http.StatusBadRequest)
 		return
 	}
 
-	var event Event
-	if err := json.Unmarshal(body. $event); err != nil {
-		http.Error(w,m "Invalid JSON", http.StatusBadRequest)
+	var event messages.DeviceEvent
+	if err := proto.Unmarshal(body, &event); err != nil {
+		http.Error(w, "Invalid Protobuf", http.StatusBadRequest)
 		return
 	}
 
-	s.q.Enqueue(event)
-	w.WriteHeader(http.StatusAccepted)
-}
+	log.Printf("Received event from %s of type %s", event.DeviceId, event.Type)
 
-func (s *Server) handleHealth(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("OK"))
+	s.q.Enqueue(Event{
+		DeviceID: event.DeviceId,
+		Type:     event.Type,
+		Payload:  event.Payload,
+	})
+
+	w.WriteHeader(http.StatusAccepted)
 }

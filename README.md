@@ -55,7 +55,7 @@ This project has been built to mirror real-world IoT communication patterns and 
 - Redis-backend persistent queue
 - Prometheus metrics for observability
 - Circuit breaker & exponential backoff for forwarding
-- Unit tests for all components\
+- Unit tests for all components
 - Terrafrom ifrastructure examples
 
 ---
