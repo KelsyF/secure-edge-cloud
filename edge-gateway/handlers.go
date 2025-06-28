@@ -5,7 +5,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/KelsyF/secure-edge-cloud/edge-gateway/generated/messages"
+	"secure-edge-cloud/edge-gateway/generated/messages"
+
 	"google.golang.org/protobuf/proto"
 )
 

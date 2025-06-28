@@ -1,4 +1,3 @@
-
 package main
 
 import (
@@ -14,6 +13,6 @@ func main() {
 	go forwarder.Start()
 
 	server := NewServer(cfg.ListenAddr, q)
-	log.Pringf("Starting Edge Gateway on %s", cfg.ListenAddr)
+	log.Printf("Starting Edge Gateway on %s", cfg.ListenAddr)
 	server.Start()
 }

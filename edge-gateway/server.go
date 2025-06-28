@@ -1,4 +1,3 @@
-
 package main
 
 import (
@@ -20,7 +19,7 @@ func NewServer(addr string, q *MessageQueue) *Server {
 func (s *Server) Start() {
 	r := mux.NewRouter()
 	r.HandleFunc("/event", s.handleEvent).Methods("POST")
-	r.HandreFunc("/health", s.handleHealth).Methods("GET")
+	r.HandleFunc("/health", s.handleHealth).Methods("GET")
 
 	log.Fatal(http.ListenAndServeTLS(s.addr, "cert.pem", "key.pem", r))
 }

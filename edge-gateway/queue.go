@@ -1,16 +1,21 @@
-
 package main
 
 import "sync"
 
+type Event struct {
+	DeviceID string
+	Type     string
+	Payload  string
+}
+
 type MessageQueue struct {
-	mu	  sync.mutex
+	mu    sync.Mutex
 	queue []Event
 }
 
 func NewMessageQueue() *MessageQueue {
 	return &MessageQueue{
-		queue: make([]Event, 0)
+		queue: make([]Event, 0),
 	}
 }
 
